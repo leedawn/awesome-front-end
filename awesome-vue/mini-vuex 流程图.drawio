@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="dXsVRVkArTEVPFz5UmYp" name="Page-1">
-        <mxGraphModel dx="736" dy="301" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="1132" dy="477" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -14,22 +14,22 @@
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="3" value="createStore({&lt;br&gt;state,getters,&lt;br&gt;mutations,actions&lt;br&gt;})" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="100" y="200" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="100" y="210" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="9" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" edge="1" parent="1" source="4" target="5">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="4" value="new Store()，包含了 _state，_mutations，_actions，getters" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="100" y="340" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="100" y="330" width="120" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="10" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=12;" edge="1" parent="1" source="5" target="6">
                     <mxGeometry relative="1" as="geometry"/>
                 </mxCell>
                 <mxCell id="5" value="app.use() 调用了 Store 类的 install 方法 app.provide(STORE_KEY,this)" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="75" y="480" width="170" height="60" as="geometry"/>
+                    <mxGeometry x="75" y="450" width="170" height="60" as="geometry"/>
                 </mxCell>
                 <mxCell id="6" value="&lt;font style=&quot;font-size: 12px&quot;&gt;useStore() 调用了 inject(STORE_KEY)，然后就可以用 Store 中的变量和方法&amp;nbsp;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;fontSize=8;" vertex="1" parent="1">
-                    <mxGeometry x="100" y="600" width="120" height="60" as="geometry"/>
+                    <mxGeometry x="100" y="570" width="120" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

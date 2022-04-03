@@ -1,4 +1,3 @@
-// import { createStore } from 'vuex'
 import { createStore } from "./gvuex";
 const store = createStore({
   state() {

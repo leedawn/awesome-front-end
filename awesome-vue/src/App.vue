@@ -1,23 +1,27 @@
 <template>
-  <div>{{ count }} *2 = {{ double }}</div>
-  <button @click="add">add</button>
-  <button @click="asyncAdd">async add</button>
-  {{ name }}
+  <p>
+    <!--`<router-link>` 将呈现一个带有正确 `href` 属性的 `<a>` 标签-->
+    <router-link to="/"> Home</router-link> | <router-link to="/counter">Counter</router-link>
+  </p>
+  <router-view></router-view>
 </template>
 
-<script setup>
-import { computed, inject } from "vue";
-import { useStore } from "./store/gvuex";
-let store = useStore();
-let count = computed(() => store.state.count);
-let double = computed(() => store.getters.double);
-let name = inject("name");
+<script setup></script>
 
-function asyncAdd() {
-  const result = store.dispatch("asyncAdd");
-  console.log(result);
+<style scoped>
+/* route transitions */
+.route-enter-from {
+  opacity: 0;
+  transform: translateX(100px);
 }
-function add() {
-  store.commit("add");
+.route-enter-active {
+  transition: all 0.3s ease-out;
 }
-</script>
+.route-leave-to {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+.route-leave-active {
+  transition: all 0.3s ease-in;
+}
+</style>

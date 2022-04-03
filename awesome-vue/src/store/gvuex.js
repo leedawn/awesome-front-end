@@ -13,7 +13,7 @@ class Store {
     this._state = reactive({
       data: options.state()
     })
-    this._mutations = options.mutations
+    this._mutations = options.mutations 
     this._actions = options.actions
     this.getters = {}
 

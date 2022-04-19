@@ -6,7 +6,11 @@
   <router-view></router-view>
 </template>
 
-<script setup></script>
+<script setup>
+window.addEventListener("popstate", function () {
+  console.log("popstate");
+});
+</script>
 
 <style scoped>
 /* route transitions */

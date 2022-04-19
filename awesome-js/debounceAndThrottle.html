@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div><span>没有处理的输入框</span><input id="input0" type="text" /></div>
+    <div><span>使用防抖的输入框</span><input id="input1" type="text" /></div>
+    <div><span>使用节流的输入框</span><input id="input2" type="text" /></div>
+
+    <script src="./debounce.js"></script>
+    <script src="./throttle.js"></script>
+
+    <script>
+      // 1. 打印结果
+      function request(content) {
+        console.log(Date.now() + " " + content);
+      }
+
+      // 2.1 防抖处理
+      debounceHandle = debounce2(request, 1000, true);
+
+      // 2.2 节流处理
+      throttleHandle = throttle2(request, 1000);
+
+      // 3. 输入框
+      const input0 = document.getElementById("input0");
+      input0.addEventListener("keyup", function (e) {
+        request(e.target.value);
+      });
+
+      const input1 = document.getElementById("input1");
+      input1.addEventListener("keyup", function (e) {
+        debounceHandle(e.target.value);
+      });
+
+      const input2 = document.getElementById("input2");
+      input2.addEventListener("keyup", function (e) {
+        throttleHandle(e.target.value);
+      });
+    </script>
+  </body>
+</html>

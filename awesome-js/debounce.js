@@ -15,7 +15,9 @@ function debounce2(fn, time, immediate) {
   let timer = null;
   return function (...args) {
     const context = this;
-    if (timer) clearTimeout(timer);
+    if (timer) {
+      clearTimeout(timer);
+    }
     if (immediate) {
       const callNow = !timer;
       timer = setTimeout(function () {

@@ -21,10 +21,10 @@
       }
 
       // 2.1 防抖处理
-      debounceHandle = debounce2(request, 1000, true);
+      debounceHandle = debounce2(request, 1000, false);
 
       // 2.2 节流处理
-      throttleHandle = throttle2(request, 1000);
+      throttleHandle = throttle(request, 1000);
 
       // 3. 输入框
       const input0 = document.getElementById("input0");

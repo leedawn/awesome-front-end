@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 80px;
+        height: 80px;
+        border: 1px solid #000;
+      }
+      div:hover {
+        animation: 3s 1s rainbow linear 3 forwards normal; /* 持续时间，延迟时间，动画名称，状态变化速度，播放次数，动画结束的状态，动画播放的方向*/
+      }
+      @keyframes rainbow {
+        0% {
+          background: red;
+        }
+        50% {
+          background: green;
+        }
+        100% {
+          background: #000;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div></div>
+  </body>
+</html>

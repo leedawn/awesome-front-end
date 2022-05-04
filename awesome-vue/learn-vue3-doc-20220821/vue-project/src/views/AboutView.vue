@@ -1,8 +1,13 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <!-- <h1>This is an about page</h1> -->
+    <Test />
   </div>
 </template>
+
+<script setup lang="ts">
+import Test from "./test-define";
+</script>
 
 <style>
 @media (min-width: 1024px) {

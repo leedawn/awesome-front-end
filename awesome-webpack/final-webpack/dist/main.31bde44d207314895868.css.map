@@ -1,0 +1,1 @@
+{"version":3,"file":"main.31bde44d207314895868.css","sources":["webpack:///./src/assets/index.less"],"sourcesContent":["div {\n  border: 4px solid blue;\n  display: grid;\n  transition: all 0.5s;\n}\ninput::placeholder {\n  color: green;\n}\n"],"mappings":"AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AACA;;","sourceRoot":""}

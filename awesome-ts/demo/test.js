@@ -1,6 +1,3 @@
-var nameNumber;
-nameNumber = ["leon", '24'];
-/* type strOrNum = string | number;
-let sample: strOrNum;
-sample = 34;
-sample = "34"; */
+var foo = {};
+// foo.bar = 23;
+// foo.bars = "45";

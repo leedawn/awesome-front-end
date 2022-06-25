@@ -1,0 +1,9 @@
+{
+  "name": "small-nuxt",
+  "scripts": {
+    "dev": "nuxt"
+  },
+  "dependencies": {
+    "nuxt": "^2.14.5"
+  }
+}

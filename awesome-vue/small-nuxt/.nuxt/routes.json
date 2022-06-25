@@ -1,0 +1,8 @@
+[
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/admin/Documents/learn-front-end/testLab/awesome-front-end/awesome-vue/small-nuxt/pages/index.vue",
+    "chunkName": "pages/index"
+  }
+]

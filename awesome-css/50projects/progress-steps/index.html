@@ -1,12 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    
-</body>
+    <style>
+      :root {
+        --active-color: #0095e1;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .indicate {
+        display: flex;
+        width: 350px;
+        position: relative;
+        justify-content: space-between;
+      }
+      .indicate:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: -1;
+        width: 350px;
+        height: 4px;
+        background-color: lightgray;
+      }
+      #progress-bar {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: -1;
+        width: 0;
+        height: 4px;
+        background-color: var(--active-color);
+        transition: 0.4s ease;
+      }
+      .circle {
+        border: 2px solid lightgray;
+        border-radius: 18px;
+        width: 18px;
+        height: 18px;
+        text-align: center;
+        color: gray;
+        transition: 0.4s ease;
+        background-color: white;
+      }
+      .active-circle {
+        border-color: var(--active-color);
+      }
+      .button-wrapper {
+        margin-top: 20px;
+      }
+      button {
+        padding: 8px 24px;
+        border: 0;
+        border-radius: 4px;
+        color: white;
+        background-color: #e0e0e0;
+        cursor: not-allowed;
+      }
+      .active-button {
+        background-color: var(--active-color);
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="indicate">
+      <div id="progress-bar"></div>
+      <div class="circle active-circle">1</div>
+      <div class="circle">2</div>
+      <div class="circle">3</div>
+      <div class="circle">4</div>
+    </div>
+    <div class="button-wrapper">
+      <button>Prev</button>
+      <button class="active-button">Next</button>
+    </div>
+
+    <script>
+      const buttons = document.querySelectorAll("button");
+      let activeIndex = 1;
+      const firstIndex = 1,
+        lastIndex = 4;
+
+      // 按钮添加事件
+      buttons[0].addEventListener("click", () => {
+        if (activeIndex === firstIndex) return;
+        activeIndex--;
+        changeActiveStyle(activeIndex, firstIndex, lastIndex);
+      });
+      buttons[1].addEventListener("click", () => {
+        if (activeIndex === lastIndex) return;
+        activeIndex++;
+        changeActiveStyle(activeIndex, firstIndex, lastIndex);
+      });
+
+      // 改变激活元素的样式
+      function changeActiveStyle(index, firstIndex, lastIndex) {
+        const circles = document.getElementsByClassName("circle");
+        const progressBar = document.querySelector("#progress-bar");
+        const buttons = document.getElementsByTagName("button");
+
+        if (index === firstIndex) {
+          buttons[0].classList.remove("active-button");
+        } else {
+          circles[index - 1].classList.add("active-circle");
+          buttons[0].classList.add("active-button");
+        }
+        if (index === lastIndex) {
+          buttons[1].classList.remove("active-button");
+        } else {
+          circles[index].classList.remove("active-circle");
+          buttons[1].classList.add("active-button");
+        }
+        progressBar.style.width = ((index - 1) / (circles.length - 1)) * 100 + "%";
+      }
+    </script>
+  </body>
 </html>

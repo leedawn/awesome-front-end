@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .ps {
+        position: relative;
+        flex: 1;
+        background-image: url(./ps.jpg);
+        background-position: center;
+        background-size: cover;
+        height: 100vh;
+        transition: 1.2s 0.2s flex ease;
+      }
+      .ps::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(87, 84, 236, 0.7);
+      }
+      .xbox {
+        position: relative;
+        flex: 1;
+        background-image: url(./xbox.jpg);
+        background-position: center left;
+        background-size: cover;
+        height: 100vh;
+        transition: 1.2s 0.2s flex ease;
+      }
+      .xbox::after {
+        content: "";
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(43, 43, 43, 0.8);
+      }
+      .active {
+        flex: 3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="ps"></div>
+      <div class="xbox"></div>
+    </div>
+    <script>
+      const ps = document.querySelector(".ps");
+      const xbox = document.querySelector(".xbox");
+      ps.addEventListener("mouseenter", () => {
+        ps.classList.add("active");
+      });
+      ps.addEventListener("mouseleave", () => {
+        ps.classList.remove("active");
+      });
+      xbox.addEventListener("mouseenter", () => {
+        xbox.classList.add("active");
+      });
+      xbox.addEventListener("mouseleave", () => {
+        xbox.classList.remove("active");
+      });
+    </script>
+  </body>
+</html>

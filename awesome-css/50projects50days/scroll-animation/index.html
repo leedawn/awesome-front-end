@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        height: 2918px;
+        background-color: #efedd6;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .box {
+        border-radius: 10px;
+        width: 400px;
+        height: 200px;
+        margin: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        background-color: steelblue;
+        font-size: 45px;
+        box-shadow: 2px 4px 5px rgb(0 0 0 / 30%);
+        transform: translateX(400%);
+        transition: 0.8s 0.2s transform ease;
+      }
+      .box:nth-of-type(even) {
+        transform: translateX(-400%);
+      }
+      .active {
+        transform: translateX(0) !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Scroll to see the animation</h1>
+      <div id="main-content"></div>
+    </div>
+    <script>
+      const mainContent = document.querySelector("#main-content");
+      const h1 = document.querySelector("h1");
+
+      function getBoxesInfo() {
+        const boxes = document.querySelectorAll(".box");
+        const { bottom, height } = boxes.length ? boxes[boxes.length - 1].getBoundingClientRect() : { bottom: h1.style.height, height: 0 };
+        return {
+          bottom,
+          height,
+          boxes,
+        };
+      }
+
+      function addDiv() {
+        const div = document.createElement("div");
+        div.classList.add("box");
+        div.innerText = "content";
+        mainContent.appendChild(div);
+        setTimeout(() => {
+          div.classList.add("active");
+        }, 150);
+      }
+
+      function checkAdd() {
+        const { bottom, height } = getBoxesInfo();
+        // 增加 box
+        if (window.innerHeight > bottom + height / 2) {
+          addDiv();
+          checkAdd();
+        }
+      }
+
+      checkAdd();
+
+      function checkRemove() {
+        const { bottom, boxes } = getBoxesInfo();
+        // 减少 box
+        if (bottom - 150 > window.innerHeight) {
+          const current = boxes[boxes.length - 1];
+          current.classList.remove("active");
+          setTimeout(() => {
+            mainContent.removeChild(current);
+          }, 400);
+        }
+      }
+      const handled = throttle(fn, 500);
+      window.addEventListener("scroll", handled);
+
+      function fn() {
+        checkAdd();
+        checkRemove();
+      }
+      function throttle(fn, time) {
+        let prev = Date.now();
+        return function () {
+          const current = Date.now();
+          if (current - prev > time) {
+            fn();
+            prev = current;
+          }
+        };
+      }
+    </script>
+  </body>
+</html>

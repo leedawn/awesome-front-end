@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        background-color: steelblue;
+      }
+      .box {
+        color: white;
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 10px 20px;
+        text-align: center;
+      }
+      .first-line {
+        position: relative;
+        text-align: left;
+      }
+      .first-line-span {
+        position: relative;
+        top: 25px;
+        transition: 0.2s ease;
+      }
+      .first-line-span:nth-of-type(1) {
+        transition-delay: 0;
+      }
+      .first-line-span:nth-of-type(2) {
+        transition-delay: 0.1s;
+      }
+      .first-line-span:nth-of-type(3) {
+        transition-delay: 0.2s;
+      }
+      .first-line-span:nth-of-type(4) {
+        transition-delay: 0.3s;
+      }
+      .first-line-span:nth-of-type(5) {
+        transition-delay: 0.4s;
+      }
+      .active {
+        top: 0 !important;
+      }
+
+      .second-line {
+        position: relative;
+      }
+      .second-line-span {
+        position: relative;
+        top: 25px;
+        transition: 0.2s ease;
+      }
+      .second-line-span:nth-of-type(1) {
+        transition-delay: 0;
+      }
+      .second-line-span:nth-of-type(2) {
+        transition-delay: 0.1s;
+      }
+      .second-line-span:nth-of-type(3) {
+        transition-delay: 0.2s;
+      }
+      .second-line-span:nth-of-type(4) {
+        transition-delay: 0.3s;
+      }
+      .second-line-span:nth-of-type(5) {
+        transition-delay: 0.4s;
+      }
+      .second-line-span:nth-of-type(6) {
+        transition-delay: 0.5s;
+      }
+      .second-line-span:nth-of-type(7) {
+        transition-delay: 0.6s;
+      }
+      .second-line-span:nth-of-type(8) {
+        transition-delay: 0.7s;
+      }
+      .input {
+        outline: 0;
+        width: 100%;
+        height: 20px;
+        margin: 10px 0;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px solid white;
+        color: white;
+        font-size: 18px;
+      }
+      button {
+        margin-top: 10px;
+        border: 0;
+        background-color: lightblue;
+        width: 100%;
+        height: 40px;
+        cursor: pointer;
+      }
+      a {
+        text-decoration: none;
+        color: lightblue;
+      }
+      span {
+        float: left;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h1>Please Login</h1>
+        <div class="first-line">
+          <label for="">
+            <span class="first-line-span">E</span>
+            <span class="first-line-span">m</span>
+            <span class="first-line-span">a</span>
+            <span class="first-line-span">i</span>
+            <span class="first-line-span">l</span>
+          </label>
+          <input type="text" class="input" />
+        </div>
+        <div class="second-line">
+          <label for="">
+            <span class="second-line-span">P</span>
+            <span class="second-line-span">a</span>
+            <span class="second-line-span">s</span>
+            <span class="second-line-span">s</span>
+            <span class="second-line-span">w</span>
+            <span class="second-line-span">o</span>
+            <span class="second-line-span">r</span>
+            <span class="second-line-span">d</span>
+          </label>
+          <input type="text" class="input" />
+        </div>
+        <button>Login</button>
+        <h3>Don't have an account? <a href="#">Register</a></h3>
+      </div>
+    </div>
+    <script>
+      const inputs = document.querySelectorAll(".input");
+      const firstLineSpan = document.querySelectorAll(".first-line-span");
+      const secondLineSpan = document.querySelectorAll(".second-line-span");
+
+      inputs[0].addEventListener("focus", () => {
+        firstLineSpan.forEach((span) => span.classList.add("active"));
+      });
+      inputs[0].addEventListener("blur", () => {
+        firstLineSpan.forEach((span) => span.classList.remove("active"));
+      });
+
+      inputs[1].addEventListener("focus", () => {
+        secondLineSpan.forEach((span) => span.classList.add("active"));
+      });
+      inputs[1].addEventListener("blur", () => {
+        secondLineSpan.forEach((span) => span.classList.remove("active"));
+      });
+    </script>
+  </body>
+</html>

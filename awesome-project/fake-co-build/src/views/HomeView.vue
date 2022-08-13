@@ -22,6 +22,9 @@ export default {
     open() {
       //   developing.createModal();
       //   XComponents.Developing.createModal();
+debugger
+      console.log(this.$t('common.action.confirm'));
+
       createModal(
         () => (
           <div>
@@ -36,9 +39,11 @@ export default {
           closable: false,
           maskClosable: false,
           footer: () => (
-            <Button type="primary" onClick={() => ssoClient.logout()}>
-              confirm
-            </Button>
+            <div>
+              <Button type="primary">取消</Button>
+              <Button type="primary">暂存</Button>
+              <Button type="primary">确定</Button>
+            </div>
           ),
         },
       );
@@ -46,3 +51,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.logout-modal .ant-modal-title {
+  text-align: center;
+}
+</style>

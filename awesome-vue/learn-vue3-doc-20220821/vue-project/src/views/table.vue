@@ -1,8 +1,18 @@
 <template>
   <div :class="$style.wrap">
     <div :class="$style.operation">
-      <ADropdown>
-        <ColumnHeightOutlined />
+      <APopover trigger="click">
+        <IconFont :class="$style.icon" type="icon-setting" />
+        <template #content>
+          <ACheckbox v-model:checked="allColumns">列展示</ACheckbox>
+          <ACheckbox v-model:checked="showIndex">序号列</ACheckbox>
+          <ACheckbox v-model:checked="bordered">边框</ACheckbox>
+          <AButton>重置</AButton>
+        </template>
+      </APopover>
+
+      <ADropdown trigger="click">
+        <ColumnHeightOutlined :class="$style.icon" />
         <template #overlay>
           <AMenu @click="clickMenu">
             <AMenuItem v-for="(v, k) in tableSize" :key="k">{{ v }}</AMenuItem>
@@ -11,120 +21,50 @@
       </ADropdown>
     </div>
 
-    <ATable :dataSource="dataSource" :columns="columns" :size="size" />
+    <ATable
+      :dataSource="dataSource"
+      :columns="showIndex ? indexColumns : columns"
+      :size="size"
+      :bordered="bordered"
+    />
   </div>
 </template>
 
 <script lang="tsx" setup>
-import { useCssModule, ref } from "vue";
+import { ref } from "vue";
 import type { MenuInfo } from "ant-design-vue";
-import { Tag } from "ant-design-vue";
+import { dataSource, useTableColumns } from "./utils";
 import { ColumnHeightOutlined } from "@ant-design/icons-vue";
 
-interface TableType {
-  key: string;
-  name: string;
-  sex: string;
-  cloth: string;
-  price: number;
-  status: "热卖中" | "已售罄";
-}
 const tableSize = {
   default: "默认",
   middle: "中等",
   small: "紧凑",
 };
 
-const cssModule = useCssModule();
+const { columns, indexColumns } = useTableColumns();
 const size = ref("default");
-const dataSource = [
-  {
-    key: "1",
-    name: "路飞",
-    sex: "男",
-    cloth: "西装",
-    price: 600,
-    status: "热卖中",
-  },
-  {
-    key: "2",
-    name: "佐罗",
-    sex: "男",
-    cloth: "领带",
-    price: 640,
-    status: "已售罄",
-  },
-  {
-    key: "3",
-    name: "路飞",
-    sex: "男",
-    cloth: "西装",
-    price: 600,
-    status: "热卖中",
-  },
-  {
-    key: "4",
-    name: "路飞",
-    sex: "男",
-    cloth: "西装",
-    price: 600,
-    status: "热卖中",
-  },
-];
-const columns = [
-  {
-    title: "姓名",
-    dataIndex: "name",
-    key: "name",
-    customRender: ({ text }: { text: string }) => {
-      return (
-        <div>
-          {text}
-          <span class={cssModule.redText}>[测试bodyCell]</span>
-        </div>
-      );
-    },
-  },
-  {
-    title: "性别",
-    dataIndex: "sex",
-    key: "sex",
-  },
-  {
-    title: "衣服",
-    dataIndex: "cloth",
-    key: "cloth",
-  },
-  {
-    title: "价格",
-    dataIndex: "price",
-    key: "price",
-    sorter: (a: TableType, b: TableType) => a.price - b.price,
-  },
-  {
-    title: "状态",
-    dataIndex: "status",
-    key: "status",
-    customRender: ({ text }: { text: string }) => {
-      if (text === "热卖中") {
-        return <Tag color="red">{text}</Tag>;
-      } else {
-        return <Tag color="default">{text}</Tag>;
-      }
-    },
-  },
-];
+const settingVisible = ref(false);
+const allColumns = ref(false);
+const showIndex = ref(false);
+const bordered = ref(false);
 
 const clickMenu = ({ _, key }: MenuInfo) => {
   size.value = key;
 };
 </script>
+
 <style lang="less" module>
 .wrap {
   margin: 20px;
   width: 800px;
   .operation {
     margin-bottom: 20px;
+    text-align: right;
+    .icon {
+      margin-left: 20px;
+      font-size: 14px;
+    }
   }
 }
 .redText {

@@ -4,9 +4,9 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
+      path: "/home",
       name: "home",
-      component: () => import("../views/temp.vue"),
+      component: () => import("../views/temp.tsx"),
     },
   ],
 });

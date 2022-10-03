@@ -1,43 +1,34 @@
-import { ref, type Ref } from "vue";
-import MonacoEditor from "./components/MonacoEditor";
+import { ref } from "vue";
 import { createUseStyles } from "vue-jss";
+import MonacoEditor from "./components/MonacoEditor";
 
-function toJson(data: unknown) {
-  return JSON.stringify(data, null, 2);
-}
-const schema = {
+const defaultSchema = {
   type: "string",
 };
-
+const toJson = (data: unknown) => JSON.stringify(data, null, 2);
 const useStyles = createUseStyles({
   editor: {
-    minHeight: 400,
+    minHeight: "400px",
   },
 });
-
 export default {
   setup() {
-    const schemaRef: Ref<unknown> = ref(schema);
-    const handleCodeChange = (code: string) => {
-      let schema: unknown;
+    const schemaRef = ref(defaultSchema);
+    const handleCodeChange = (data: string) => {
       try {
-        schema = JSON.parse(code);
-        // eslint-disable-next-line no-empty
-      } catch (err) {}
-      schemaRef.value = schema;
+        schemaRef.value = JSON.parse(data);
+      } catch (e) {
+        console.log(e);
+      }
     };
-    const classesRef = useStyles();
-    return () => {
-      const classes = classesRef.value;
-      const code = toJson(schemaRef.value);
-      return (
-        <MonacoEditor
-          code={code}
-          onChange={handleCodeChange}
-          title="Schema"
-          class={classes.editor}
-        ></MonacoEditor>
-      );
-    };
+    const styles = useStyles();
+    return () => (
+      <MonacoEditor
+        code={toJson(schemaRef.value)}
+        onChange={handleCodeChange}
+        title="schema"
+        class={styles.value.editor}
+      ></MonacoEditor>
+    );
   },
 };

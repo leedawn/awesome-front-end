@@ -8,7 +8,9 @@ import type { Data } from "lib/types";
 
 const toJson = (data: unknown) => JSON.stringify(data, null, 2);
 const useStyles = createUseStyles({
-  container: {},
+  container: {
+    margin: "50px",
+  },
   wrap: {
     display: "flex",
   },

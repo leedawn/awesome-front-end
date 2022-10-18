@@ -7,7 +7,7 @@ import monacoEditorPlugin from "vite-plugin-monaco-editor";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue(), vueJsx(), monacoEditorPlugin({})],
+  plugins: [vue(), vueJsx(), { ...monacoEditorPlugin({}), apply: "build" }],
   test: {
     globals: true,
     environment: "happy-dom",

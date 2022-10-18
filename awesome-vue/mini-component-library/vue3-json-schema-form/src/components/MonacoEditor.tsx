@@ -5,7 +5,7 @@ import {
   watch,
   onBeforeMount,
   shallowRef,
-  PropType,
+  type PropType,
 } from "vue";
 import * as Monaco from "monaco-editor";
 import { createUseStyles } from "vue-jss";

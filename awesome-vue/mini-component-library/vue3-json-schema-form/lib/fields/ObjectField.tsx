@@ -1,13 +1,15 @@
 import { isObject } from "../utils";
 import { defineComponent } from "vue";
 import { useSFContext } from "../context";
-import { fieldPropsDefine } from "../types";
+import { fieldPropsDefine, type CommonPropsType, type Schema } from "../types";
 
 export default defineComponent({
   name: "objectField",
   props: fieldPropsDefine,
   setup(props, ctx) {
-    const context = useSFContext();
+    const context = useSFContext() as {
+      SchemaItems: CommonPropsType;
+    };
 
     const changeValue = (key: string, v: unknown) => {
       const value: Record<string, unknown> | unknown = isObject(props.value)
@@ -23,9 +25,11 @@ export default defineComponent({
 
     return () => {
       const { schema, rootSchema, value } = props;
-      const properties = schema.properties || {};
+      const properties = (schema.properties || {}) as { [key: string]: Schema };
       const { SchemaItems } = context;
-      const currentValue = isObject(value) ? value : {};
+      const currentValue = (isObject(value) ? value : {}) as {
+        [key: string]: unknown;
+      };
       return Object.keys(properties).map((k, i) => {
         return (
           <SchemaItems
@@ -33,7 +37,7 @@ export default defineComponent({
             value={currentValue[k]}
             rootSchema={rootSchema}
             key={i}
-            onChange={(v: string) => changeValue(k, v)}
+            onChange={(v: unknown) => changeValue(k, v)}
           />
         );
       });

@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: "/home",
       name: "home",
-      component: () => import("../views/app.tsx"),
+      component: () => import("../views/app"),
     },
   ],
 });

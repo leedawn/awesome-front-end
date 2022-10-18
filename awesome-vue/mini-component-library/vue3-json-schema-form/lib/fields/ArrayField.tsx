@@ -1,5 +1,10 @@
 import { defineComponent, type PropType } from "vue";
-import { fieldPropsDefine } from "../types";
+import {
+  fieldPropsDefine,
+  type CommonPropsType,
+  type ItemsObject,
+  type Schema,
+} from "../types";
 import { useSFContext } from "../context";
 import { Button as AButton } from "ant-design-vue";
 import Selection from "../widgets/Selection";
@@ -69,7 +74,7 @@ export default defineComponent({
   name: "arrayField",
   props: fieldPropsDefine,
   setup(props, ctx) {
-    const context = useSFContext();
+    const context = useSFContext() as { SchemaItems: CommonPropsType };
     const handleSchemaFormChange = (v: unknown, index: number) => {
       const { value } = props;
       const arr = Array.isArray(value) ? value : [];
@@ -111,11 +116,11 @@ export default defineComponent({
       const { schema, rootSchema, value } = props;
       const isMultiType = Array.isArray(schema.items);
       const { SchemaItems } = context;
-      const arr = Array.isArray(value) ? value : [];
-      const isSelected = schema.items && schema.items.enum;
+      const arr: unknown[] = Array.isArray(value) ? value : [];
+      const isSelected = schema.items && (schema.items as ItemsObject).enum;
 
       if (isMultiType) {
-        return schema.items.map((item, index) => {
+        return (schema.items as []).map((item, index) => {
           return (
             <SchemaItems
               schema={item}
@@ -137,7 +142,7 @@ export default defineComponent({
             onDelete={handleItemDelete}
           >
             <SchemaItems
-              schema={schema.items}
+              schema={schema.items as unknown as Schema}
               value={item}
               rootSchema={rootSchema}
               key={index}
@@ -146,7 +151,7 @@ export default defineComponent({
           </ArrayItemWrap>
         ));
       } else {
-        const selection = schema.items.enum;
+        const selection = (schema.items as ItemsObject).enum;
         return (
           <Selection
             value={value}

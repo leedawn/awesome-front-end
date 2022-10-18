@@ -4,7 +4,7 @@ import MonacoEditor from "../components/MonacoEditor";
 import demos from "../demos";
 import { Button as AButton } from "ant-design-vue";
 import CustomForm from "../../lib";
-import type { Data } from "lib/types";
+import type { Data, Schema } from "lib/types";
 
 const toJson = (data: unknown) => JSON.stringify(data, null, 2);
 const useStyles = createUseStyles({
@@ -119,7 +119,7 @@ export default {
             </div>
             <div class={stylesValue.right}>
               <CustomForm
-                schema={demo.schema}
+                schema={demo.schema as unknown as Schema}
                 value={demo.data}
                 onChange={formChange}
               />

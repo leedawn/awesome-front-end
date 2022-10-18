@@ -1,4 +1,4 @@
-import type { PropType } from "vue";
+import { defineComponent, type PropType } from "vue";
 
 export enum SchemaTypes {
   "NUMBER" = "number",
@@ -7,10 +7,14 @@ export enum SchemaTypes {
   "ARRAY" = "array",
 }
 
+export interface ItemsObject {
+  enum: string[];
+}
+
 export interface Schema {
-  type: SchemaTypes | string;
+  type: SchemaTypes;
   properties: unknown;
-  items: [];
+  items: [] | ItemsObject;
 }
 
 export interface Data {
@@ -19,6 +23,9 @@ export interface Data {
   age: number;
   bio: string;
   password: string;
+  staticArray: (string | number)[];
+  singleTypeArray: { name: string; age: number }[];
+  multiSelectArray: string[];
 }
 
 export const fieldPropsDefine = {
@@ -36,3 +43,9 @@ export const fieldPropsDefine = {
     required: true,
   },
 } as const;
+
+const fieldHelperComponent = defineComponent({
+  props: fieldPropsDefine,
+});
+
+export type CommonPropsType = typeof fieldHelperComponent;

@@ -4,7 +4,7 @@
     "declarationDir": "./dist/types",
     "jsx": "preserve"
   },
-  "include": ["./**/*.*", "./shims-vue.d.ts"],
+  "include": ["./**/*.*", "./shims-vue.d.ts", "docs/**/*", "docs/.vitepress/**/*"], // 后面两个解决使用 vitepress 的时候引入文件报错
   "exclude": ["node_modules"],
   "esModuleInterop": true,
   "allowSyntheticDefaultImports": true

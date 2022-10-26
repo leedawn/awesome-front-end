@@ -23,4 +23,11 @@ export default defineConfig({
     },
     cssCodeSplit: true, // css 文件单独打包
   },
+  test: {
+    globals: true,
+    environment: "happy-dom",
+    transformMode: {
+      web: [/.[tj]sx$/],
+    },
+  },
 });

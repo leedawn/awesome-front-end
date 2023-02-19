@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .wrapper {
+        width: 400px;
+        height: 200px;
+        background-color: #eaaf9b;
+      }
+      .rabbit {
+        position: relative;
+        left: 50px;
+        top: 40px;
+        width: 99px;
+        height: 54px;
+        background-color: #fff;
+        border-radius: 35% 57% 34% 40%;
+        box-shadow: -2px 5px 4px 0px #bc857b;
+      }
+      .rabbit::before {
+        content: "";
+        position: absolute;
+        top: 25px;
+        right: 13px;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #000;
+      }
+      .rabbit::after {
+        content: "";
+        position: absolute;
+        top: 7px;
+        left: -6px;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        border-radius: 50%;
+      }
+      .ear1 {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        border-radius: 51% 63% 50% 20%;
+        transform: rotate(55deg);
+        width: 49px;
+        height: 12px;
+        background-color: #fff;
+      }
+      .ear2 {
+        position: absolute;
+        right: 12px;
+        transform: rotate(45deg);
+        border-radius: 52% 20% 40% 30%;
+        width: 41px;
+        height: 10px;
+        background-color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="rabbit">
+        <div class="ear1"></div>
+        <div class="ear2"></div>
+      </div>
+      <div class="clouds"></div>
+      <div class="text">兔年大吉</div>
+    </div>
+  </body>
+</html>
